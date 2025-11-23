@@ -2,6 +2,7 @@
 
 import { CountUpAnimation } from './animation/count/countUpAnimation';
 import { MemberLists } from './memberLists';
+import { HistoryTimeline } from './timeline/historyTimeline';
 import { useState } from 'react';
 
 export const MainContent = () => {
@@ -11,6 +12,11 @@ export const MainContent = () => {
     //     return <CountUpAnimation onComplete={() => setShowContent(true)} />;
     // }
 
-    return <MemberLists />;
+    return (
+        <>
+            {/* <MemberLists /> */}
+            <HistoryTimeline />
+        </>
+    );
 };
 

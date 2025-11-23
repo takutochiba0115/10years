@@ -10,33 +10,29 @@ type MemberCardProps = {
 
 export const MemberCard = ({ member }: MemberCardProps) => {
     const [isHovered, setIsHovered] = useState(false);
-    const [isSelected, setIsSelected] = useState(false);
 
     const neonColor = useMemo(() => {
         return selectColor[member.id % selectColor.length];
     }, [member.id]);
-
-    const showNeon = isHovered || isSelected;
 
     return (
         <div
             className="relative aspect-[3/4] bg-black rounded-lg overflow-hidden cursor-pointer group"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            onClick={() => setIsSelected(!isSelected)}
         >
-            <div className={`absolute inset-0 rounded-lg border border-gray-700 transition-opacity duration-300 z-20 pointer-events-none ${showNeon ? 'opacity-0' : 'opacity-100'}`} />
+            <div className={`absolute inset-0 rounded-lg border border-gray-700 transition-opacity duration-300 z-20 pointer-events-none ${isHovered ? 'opacity-0' : 'opacity-100'}`} />
 
             <div
-                className={`absolute inset-0 rounded-lg transition-opacity duration-300 z-20 pointer-events-none ${showNeon ? 'opacity-100' : 'opacity-0'}`}
+                className={`absolute inset-0 rounded-lg transition-opacity duration-300 z-20 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}
                 style={{
                     border: `2px solid ${neonColor}`,
                     boxShadow: `0 0 10px ${neonColor}, 0 0 20px ${neonColor}, inset 0 0 10px ${neonColor}`,
-                    animation: showNeon ? 'neon-pulse 2s ease-in-out infinite' : 'none',
+                    animation: isHovered ? 'neon-pulse 2s ease-in-out infinite' : 'none',
                 }}
             />
             <div
-                className={`absolute inset-0 transition-opacity duration-500 ${showNeon ? 'opacity-100' : 'opacity-0'
+                className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'
                     }`}
             >
                 <img
