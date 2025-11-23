@@ -1,6 +1,6 @@
 'use client';
 
-import { memberInfo } from '@/app/constants/memberInfo';
+import { memberInfo } from '../constants/memberInfo';
 import { MemberCard } from './card/memberCard';
 
 export const MemberLists = () => {

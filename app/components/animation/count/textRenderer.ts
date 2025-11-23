@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 
-// Helper function to draw stylized text with pencil sketch effect
 export const drawStylizedText = (
     textContext: CanvasRenderingContext2D,
     textCanvas: HTMLCanvasElement,
@@ -10,12 +9,10 @@ export const drawStylizedText = (
     font: string,
     progress: number
 ) => {
-    // Setup for stylish font
     textContext.font = font;
     textContext.textAlign = 'center';
     textContext.textBaseline = 'middle';
 
-    // Draw elegant white outline for shape definition
     textContext.strokeStyle = 'rgba(255, 255, 255, 0.95)';
     textContext.lineWidth = 14;
     textContext.lineCap = 'round';
@@ -26,11 +23,9 @@ export const drawStylizedText = (
         textContext.strokeText(text, x + offsetX, y + offsetY);
     }
 
-    // Fill the base with light gray
     textContext.fillStyle = 'rgba(240, 240, 240, 0.95)';
     textContext.fillText(text, x, y);
 
-    // Create a temporary canvas to get the text outline for cross-hatching
     const tempCanvas = document.createElement('canvas');
     tempCanvas.width = textCanvas.width;
     tempCanvas.height = textCanvas.height;
@@ -41,11 +36,9 @@ export const drawStylizedText = (
     tempContext.fillStyle = 'white';
     tempContext.fillText(text, x, y);
 
-    // Get the text pixels for filling with black pencil strokes
     const imageData = tempContext.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
     const pixels = imageData.data;
 
-    // Draw dense black cross-hatching inside the number (first layer)
     textContext.strokeStyle = 'rgba(20, 20, 20, 0.7)';
     textContext.lineWidth = 3;
     textContext.lineCap = 'round';
@@ -60,7 +53,6 @@ export const drawStylizedText = (
                 const angle2 = -Math.PI / 4 + (Math.random() - 0.5) * 0.2;
                 const length = 10 + Math.random() * 6;
 
-                // First direction
                 textContext.beginPath();
                 textContext.moveTo(px, py);
                 textContext.lineTo(
@@ -69,7 +61,6 @@ export const drawStylizedText = (
                 );
                 textContext.stroke();
 
-                // Second direction for cross-hatch
                 if (Math.random() > 0.2) {
                     textContext.beginPath();
                     textContext.moveTo(px, py);
@@ -83,7 +74,6 @@ export const drawStylizedText = (
         }
     }
 
-    // Add thicker very dark black strokes (second layer)
     textContext.strokeStyle = 'rgba(10, 10, 10, 0.8)';
     textContext.lineWidth = 4;
     for (let py = 0; py < tempCanvas.height; py += 6) {
@@ -105,8 +95,6 @@ export const drawStylizedText = (
             }
         }
     }
-
-    // Add horizontal strokes for variation (third layer)
     textContext.strokeStyle = 'rgba(0, 0, 0, 0.6)';
     textContext.lineWidth = 3;
     for (let py = 0; py < tempCanvas.height; py += 8) {
@@ -128,8 +116,6 @@ export const drawStylizedText = (
             }
         }
     }
-
-    // Minimal white accents for stylish touch (very subtle)
     if (progress > 0.5) {
         textContext.strokeStyle = 'rgba(255, 255, 255, 0.2)';
         textContext.lineWidth = 2;
@@ -150,7 +136,6 @@ export const drawStylizedText = (
     }
 };
 
-// Draw text with stylish dark pencil sketch
 export const drawText = (
     textContext: CanvasRenderingContext2D,
     textCanvas: HTMLCanvasElement,
