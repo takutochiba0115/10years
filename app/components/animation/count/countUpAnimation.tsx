@@ -86,7 +86,7 @@ export const CountUpAnimation = ({ onComplete }: CountUpAnimationProps) => {
 
             // Show "years" letter by letter after reaching 10
             if (showingYears) {
-                yearsProgress += 0.015;
+                yearsProgress += 0.04;
                 if (yearsProgress > 0.25 && yearsCharCount < 5) {
                     yearsProgress = 0;
                     yearsCharCount++;
